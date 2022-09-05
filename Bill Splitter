@@ -1,0 +1,22 @@
+import random
+total = int(input("Enter the number of friends joining (including you):"))
+
+if total <= 0:
+    print("\nNo one is joining for the party")
+else:
+    print("\nEnter the name of every friend (including you), each on a new line:")
+    userslist = [input() for i in range(total)]
+    bill = int(input("\nEnter the total bill value:\n"))
+    billsplit = round(bill / total, 2)
+    usersdict = {user: billsplit for user in userslist}
+    question = input("\nDo you want to use the 'Who is lucky?' feature? Write Yes/No: ")
+    if question == "Yes":
+        randomuser = random.randint(0, total)
+        print(f"\n{userslist[randomuser]} is the lucky one!")
+        billsplit = round(bill / (total - 1), 2)
+        usersdict = {user: billsplit for user in userslist}
+        usersdict[userslist[randomuser]] = 0
+        print(usersdict)
+    else:
+        print("\nNo one is going to be lucky")
+        print(usersdict)
